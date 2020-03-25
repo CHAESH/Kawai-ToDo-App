@@ -20,7 +20,7 @@ export default class ToDo extends React.Component {
     text: PropTypes.string.isRequired,
     isCompleted: PropTypes.bool.isRequired,
     deleteToDo: PropTypes.func.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     uncompleteToDo: PropTypes.func.isRequired,
     completeToDo: PropTypes.func.isRequired,
     updateToDo: PropTypes.func.isRequired
