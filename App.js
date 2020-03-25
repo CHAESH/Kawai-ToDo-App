@@ -1,41 +1,41 @@
-import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  StatusBar, 
-  TextInput, 
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  TextInput,
   Dimensions,
-  Platform, 
+  Platform,
   ScrollView
-} from 'react-native';
+} from "react-native";
 import ToDo from "./ToDo";
 
-const {height, width} = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 
-export default class App extends React.Component{
+export default class App extends React.Component {
   state = {
     newToDo: ""
   };
 
-  render(){
-    const{newToDo} = this.state;
+  render() {
+    const { newToDo } = this.state;
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content"/>
+        <StatusBar barStyle="light-content" />
         <Text style={styles.title}>Kawai To Do</Text>
         <View style={styles.card}>
-          <TextInput 
-            style={styles.input} 
-            placeholder={"New To Do"} 
-            value={newToDo} 
+          <TextInput
+            style={styles.input}
+            placeholder={"New To Do"}
+            value={newToDo}
             onChangeText={this._controlNewToDo}
             placeholderTextColor={"#999"}
             returnKeyType={"done"}
             autoCorrect={false}
           />
           <ScrollView contentContainerStyle={styles.toDos}>
-            <ToDo/>
+            <ToDo text={"hello"} />
           </ScrollView>
         </View>
       </View>
@@ -44,27 +44,27 @@ export default class App extends React.Component{
   _controlNewToDo = text => {
     this.setState({
       newToDo: text
-    })
-  }  
+    });
+  };
 }
-  
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f23657',
-    alignItems: 'center'
+    backgroundColor: "#f23657",
+    alignItems: "center"
   },
   title: {
     color: "white",
     fontSize: 30,
     marginTop: 50,
-    fontWeight:"200",
+    fontWeight: "200",
     marginBottom: 30
   },
   card: {
     backgroundColor: "white",
     flex: 1,
-    width: width -25,
+    width: width - 25,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     ...Platform.select({
