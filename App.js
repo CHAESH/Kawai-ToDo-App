@@ -52,7 +52,13 @@ export default class App extends React.Component {
           />
           <ScrollView contentContainerStyle={styles.toDos}>
             {Object.values(toDos).map(toDo => (
-              <ToDo key={toDo.id} {...toDo} deleteToDo={this._deleteToDo} />
+              <ToDo
+                key={toDo.id}
+                {...toDo}
+                deleteToDo={this._deleteToDo}
+                uncompleteToDo={this._uncompleteToDo}
+                completeToDo={this._completeToDo}
+              />
             ))}
           </ScrollView>
         </View>
@@ -73,7 +79,7 @@ export default class App extends React.Component {
     const { newToDo } = this.state;
     if (newToDo !== "") {
       this.setState(prevState => {
-        const ID = Math.floor((Math.random() * 100000) / 3.92);
+        const ID = Math.floor((Math.random() * 1000000) / 3.92);
         const newToDoObject = {
           [ID]: {
             id: ID,
@@ -101,6 +107,37 @@ export default class App extends React.Component {
       const newState = {
         ...prevState,
         ...toDos
+      };
+      return { ...newState };
+    });
+  };
+
+  _uncompleteToDo = id => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: false
+          }
+        }
+      };
+      return { ...newState };
+    });
+  };
+  _completeToDo = id => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: true
+          }
+        }
       };
       return { ...newState };
     });
