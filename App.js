@@ -33,7 +33,7 @@ export default class App extends React.Component {
 
   render() {
     const { newToDo, loadedToDos, toDos } = this.state;
-
+    console.log(toDos);
     if (!loadedToDos) {
       return <AppLoading />;
     }
@@ -55,7 +55,9 @@ export default class App extends React.Component {
           />
           <ScrollView contentContainerStyle={styles.toDos}>
             {Object.values(toDos)
-              .reverse()
+              .sort((a, b) => {
+                return a.createdAt - b.createdAt;
+              })
               .map(toDo => (
                 <ToDo
                   key={toDo.id}
@@ -86,10 +88,10 @@ export default class App extends React.Component {
     }
   };
   _addToDo = () => {
-    const { newToDo } = this.state;
+    const { newToDo, toDos } = this.state;
     if (newToDo !== "") {
       this.setState(prevState => {
-        const ID = Math.floor((Math.random() * 1000000) / 3.92);
+        const ID = Math.floor((Math.random() * 10000) / 3.29);
         const newToDoObject = {
           [ID]: {
             id: ID,
